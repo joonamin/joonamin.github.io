@@ -164,7 +164,7 @@ const main = async () => {
 main()
 ```
 
-browser간 MessageChannel을 이용한 방식으로 serialzation algorithm을 사용한다. 이벤트 기반의 동작이므로 cloning 또한 asynchronouse하다는 특징이 있다.
+browser간 MessageChannel을 이용한 방식으로 serialzation algorithm을 사용한다. 이벤트 기반의 동작이므로 cloning 또한 asynchronous하다는 특징이 있다.
 
 
 
