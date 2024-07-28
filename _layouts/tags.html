@@ -10,9 +10,9 @@ layout: page
 <script>
   function showWordCloud(wordStr) {
     wordStr = wordStr.replace(/'/g, "\"");
-    wordStr = wordStr.replace(/}{/g, '}, {')
-    wordStr = `[${wordStr}]`
-    const words = JSON.parse(wordStr)
+    wordStr = wordStr.replace(/}{/g, '}, {');
+    wordStr = `[${wordStr}]`;
+    const words = JSON.parse(wordStr);
     $('#wordcloud').jQCloud(words, {
       'shape': 'elliptic',
     });
