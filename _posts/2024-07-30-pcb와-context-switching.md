@@ -3,6 +3,8 @@ layout: post
 title: PCB와 Context Switching
 date: 2024-07-30 18:03 +0900
 math: true
+categories: [Computer Science, Operating System]
+tags: [process, kernel]
 ---
 # PCB와 Context Switching
 
