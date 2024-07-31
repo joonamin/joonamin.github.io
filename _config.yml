@@ -225,3 +225,22 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+jekyll_compose:
+  default_front_matter:
+    drafts:
+      pin: false
+      math: true
+      mermaid: true
+      description:
+      categories: []
+      tags: []
+
+    posts:
+      pin: false
+      math: true
+      mermaid: true
+      description:
+      categories: []
+      tags: []
+
