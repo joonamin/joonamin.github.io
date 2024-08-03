@@ -227,6 +227,7 @@ jekyll-archives:
     category: /categories/:name/
 
 jekyll_compose:
+  auto_open: true # make sure that you have `EDITOR`, `VISUAL` or `JEKYLL_EDITOR` environment variable set.
   default_front_matter:
     drafts:
       pin: false
