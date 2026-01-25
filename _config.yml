@@ -16,10 +16,10 @@ timezone: Asia/Seoul
 
 title: Joon Devlog # the main title
 
-tagline: 기록은 기억을 지배한다 # it will display as the sub-title
+tagline: 빠른 답보다 깊은 사색을. 온전한 이해를 향한 여정을 기록합니다. # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  개발 과정의 고민과 성장을 기록합니다
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -245,3 +245,14 @@ jekyll_compose:
       categories: []
       tags: []
 
+jekyll_admin:
+  hidden_links:
+    # - posts
+    - pages
+    - staticfiles
+    # - datafiles
+    # - configuration
+  homepage: "pages"
+
+plugins:
+  - jekyll-seo-tag
