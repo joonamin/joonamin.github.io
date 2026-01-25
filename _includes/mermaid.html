@@ -1,11 +1,35 @@
 <!-- mermaid-js loader -->
 <script type="module">
-  import mermaid from '{{ site.data.origin[type].mermaid.js }}';
+  // Import ZenUML via ESM (using the URL from _data/origin/cors.yml)
   import zenuml from '{{ site.data.origin[type].zenuml.js }}';
 
+  // Function to register ZenUML once mermaid is ready
+  async function registerZenUML() {
+    // If mermaid is already loaded (UMD global)
+    if (window.mermaid) {
+      try {
+        await window.mermaid.registerExternalDiagrams([zenuml]);
+        console.log('ZenUML registered successfully');
+      } catch (e) {
+        console.error('Failed to register ZenUML', e);
+      }
+    } else {
+      // Retry if mermaid isn't ready yet (though standard load order usually guarantees it)
+      setTimeout(registerZenUML, 50);
+    }
+  }
+
+  registerZenUML();
+</script>
+
+<script type="text/javascript">
   function updateMermaid(event) {
     if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
       const mode = event.data.message;
+
+      if (typeof mermaid === 'undefined') {
+        return;
+      }
 
       let expectedTheme = mode === ModeToggle.DARK_MODE ? 'dark' : 'default';
       let config = { theme: expectedTheme };
@@ -26,7 +50,7 @@
     }
   }
 
-  (async function () {
+  (function () {
     let initTheme = 'default';
     const html = document.documentElement;
 
@@ -48,15 +72,19 @@
       const backup = elem.parentElement;
       backup.classList.add('d-none');
       {%- comment -%} create mermaid node {%- endcomment -%}
-      let mermaid = document.createElement('pre');
-      mermaid.classList.add('mermaid');
+      let mermaidNode = document.createElement('pre');
+      mermaidNode.classList.add('mermaid');
       const text = document.createTextNode(svgCode);
-      mermaid.appendChild(text);
-      backup.after(mermaid);
+      mermaidNode.appendChild(text);
+      backup.after(mermaidNode);
     });
 
-    await mermaid.registerExternalDiagrams([zenuml]);
-    mermaid.initialize(mermaidConf);
+    // Ensure initialization happens after potential registration delay
+    // But typically standard script runs synchronously after download, so it's ready.
+    if (window.mermaid) {
+      mermaid.initialize(mermaidConf);
+    }
+    
     window.addEventListener('message', updateMermaid);
   })();
 </script>
